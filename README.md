@@ -20,7 +20,7 @@ Follow these steps to set up and work on your project:
 - [ ] Add your _Team Lead_ as collaborator on Github.
 - [ ] Clone your forked version of the Repository.
 - [ ] Create a new Branch on the clone: git checkout -b `firstName-lastName`.
-- [ ] Implement the project on this Branch, committing changes regularly.
+- [X] Implement the project on this Branch, committing changes regularly.
 - [ ] Push commits: git push origin `firstName-lastName`.
 
 Follow these steps for completing your project.
@@ -39,12 +39,20 @@ Commit your code regularly and use descriptive messages. This helps both you (in
 Demonstrate your understanding of this week's concepts by answering the following free-form questions. Edit this document to include your answers after each question. Make sure to leave a blank line above and below your answer so it is clear and easy to read by your project manager.
 
 - [ ] What is the purpose of using _sessions_?
+        
+        Sessions store information about a client for the server, and can be used for authentication information persistence.
 
 - [ ] What does bcrypt do to help us store passwords in a secure manner.
 
+        BCrypt is used to hash passwords, turning the plain text entry into an unreadable code.
+
 - [ ] What does bcrypt do to slow down attackers?
 
+        Hashed passwords require attackers to use sophisticated and/or time consuming tools to get at sensative information. The process is usually too costly, technically difficult, and simply not worth the time for most attackers. 
+
 - [ ] What are the three parts of the JSON Web Token?
+
+        Each JSON webtoken requires three parts: Header, Payload, and Signature. Header contains routing information, Payload contains the actual token data, and Signature helps with authentication.
 
 ## Minimum Viable Product
 
