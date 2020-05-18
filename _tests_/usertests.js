@@ -14,7 +14,7 @@ describe("register endpoint tests", () => {
   it("POST /register new user", async () => {
     await supertest(server)
       .post("/api/auth/register")
-      .send({ username: "cool", password: "beans" })
+      .send({ username: "testuser", password: "testpass" })
       .then(res => {
         expect(res.statusCode).toBe(201);
       });
@@ -22,7 +22,7 @@ describe("register endpoint tests", () => {
   it("POST /register return with JSON", async () => {
     await supertest(server)
       .post("/api/auth/register")
-      .send({ username: "cool", password: "beans" })
+      .send({ username: "testuser", password: "testpass" })
       .then(res => {
         expect(res.type).toBe("application/json");
       });
@@ -35,11 +35,11 @@ describe("login & joke endpoint tests", () => {
   });
 
   it("POST /login test & json test", async () => {
-    await Users.add({ username: "cool", password: "beans" });
+    await Users.add({ username: "testuser", password: "testpass" });
 
     await supertest(server)
       .post("/api/auth/login")
-      .send({ username: "cool", password: "beans" })
+      .send({ username: "testuser", password: "testpass" })
       .then(res => {
         expect(res.status).toBe(200);
         expect(res.type).toBe("application/json");
@@ -48,12 +48,12 @@ describe("login & joke endpoint tests", () => {
 
   it("GET /jokes token test", async () => {
     await Users.add({
-      username: "cool2",
-      password: "beans"
+      username: "testuser2",
+      password: "testpass"
     });
     await supertest(server)
       .post("/api/auth/login")
-      .send({ username: "cool2", password: "beans" })
+      .send({ username: "testuser2", password: "testpass" })
       .then(res => {
         expect(res.type).toBe("application/json");
         return res.body.token;
@@ -67,12 +67,12 @@ describe("login & joke endpoint tests", () => {
   });
   it("GET /jokes data test", async () => {
     await Users.add({
-      username: "cool2",
-      password: "beans"
+      username: "testuser2",
+      password: "testpass"
     });
     await supertest(server)
       .post("/api/auth/login")
-      .send({ username: "cool2", password: "beans" })
+      .send({ username: "testuser2", password: "testpass" })
       .then(res => {
         return res.body.token;
       })
@@ -81,9 +81,9 @@ describe("login & joke endpoint tests", () => {
           .get("/api/jokes")
           .set("Authorization", token)
           .then(res => {
-            expect(res.body[0].id).toBe("0189hNRf2g");
+            expect(res.body[0].id).toBe("1DQZvcFBdib");
             expect(res.body[1].joke).toBe(
-              "Did you hear about the guy whose whole left side was cut off? He's all right now."
+              "To be Frank, I'd have to change my name."
             );
           });
       });
