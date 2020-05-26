@@ -6,7 +6,6 @@ router.get('/', (req, res) => {
   const requestOptions = {
     headers: { accept: 'application/json' },
   };
-
   axios
     .get('https://icanhazdadjoke.com/search', requestOptions)
     .then(response => {
@@ -16,5 +15,4 @@ router.get('/', (req, res) => {
       res.status(500).json({ message: 'Error Fetching Jokes', error: err });
     });
 });
-
 module.exports = router;

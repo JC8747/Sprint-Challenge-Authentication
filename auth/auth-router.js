@@ -1,14 +1,14 @@
+const express = require("express");
 const bcrypt = require("bcryptjs");
+const Users = require("./auth-model");
 const jwt = require("jsonwebtoken");
+
 const router = require("express").Router();
-const jokes = require("../jokes/jokes-model");
 
 router.post("/register", async (req, res, next) => {
   try {
-    const {userInfo} = req.body;
-    const user = await jokes.findBy(userInfo.username).first();
-    const hash = bcrypt.hashSync(userInfo.password, 12);
-    userInfo.password = hash;
+    const { username } = req.body;
+    const user = await Users.findBy({ username }).first();
     if (user) {
       return res.status(409).json({ message: "Username is already taken" });
     }
@@ -19,11 +19,11 @@ router.post("/register", async (req, res, next) => {
 });
 
 router.post("/login", async (req, res, next) => {
-  const authError = {
+    const authError = {
     message: "Invalid Credentials"
   };
   try {
-    const user = await db('users').findBy({ username: req.body.username }).first();
+    const user = await Users.findBy({ username: req.body.username }).first();
     if (!user) {
       return res.status(401).json(authError);
     }
@@ -34,6 +34,7 @@ router.post("/login", async (req, res, next) => {
     if (!passwordValid) {
       return res.status(401).json(authError);
     }
+
     const tokenPayload = {
       userId: user.id
     };

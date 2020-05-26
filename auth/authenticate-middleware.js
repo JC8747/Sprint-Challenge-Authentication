@@ -3,7 +3,7 @@ const jwt = require("jsonwebtoken");
 function restrict() {
   return async (req, res, next) => {
     const authError = {
-      message: "Unauthorized"
+      message: "Invalid Credentials"
     };
     try {
       const token = req.headers.authorization;
@@ -22,4 +22,5 @@ function restrict() {
     }
   };
 }
+
 module.exports = restrict;
